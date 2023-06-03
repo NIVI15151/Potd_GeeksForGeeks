@@ -1,0 +1,27 @@
+int maxEqualSum(int N1,int N2,int N3,vector<int> &S1,vector<int> &S2,vector<int> &S3){
+        //  Declaring a basic variables to store data
+        int s1=0, s2=0, s3=0;
+        int ans=0;
+        
+        //  Main Computation (Logic)
+        while(N1 >= 0 && N2 >= 0 && N3 >= 0){
+            //  If you found
+            if(s1==s2 && s2==s3){
+                ans=s1;
+            }
+            
+            //  Basic Logic
+            if(s1 <= s2 && s1 <= s3){
+                s1 += S1[--N1];
+            }
+            else if(s2 <= s1 && s2 <= s3){
+                s2 += S2[--N2];
+            }
+            else if(s3 <= s1 && s3 <= s2){
+                s3 += S3[--N3];
+            }
+        }
+        
+        //  Return Answer
+        return ans;
+    }
