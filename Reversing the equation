@@ -1,0 +1,23 @@
+string reverseEqn (string s)
+    {
+        #define append push_back
+        string ans="";
+        stack<char> st;
+        for(auto val:s) st.push(val);
+        string str="";
+        unordered_set<char> v;
+        v.insert('-'); v.insert('+'); v.insert('*'); v.insert('/');
+        while(!st.empty()){
+            str="";
+            if (v.find(st.top())==v.end()) {
+                while(!st.empty() and v.find(st.top())==v.end()){
+                    str.append(st.top());
+                    st.pop();
+                }
+                reverse(str.begin(), str.end());
+                ans+=str;
+            }
+            else {ans.append(st.top()); st.pop();}
+        }
+        return ans;
+    }
