@@ -1,0 +1,41 @@
+class Solution{
+    public:
+    void inorder(Node* root,vector<int> &in){
+        if(root==NULL)return;
+        if(root->left)inorder(root->left,in);
+        in.push_back(root->key);
+        if(root->right)inorder(root->right,in);
+        
+    }
+    void findPreSuc(Node* root, Node*& pre, Node*& suc, int key){
+        Node* temp=root;
+        vector<int> in;
+        inorder(root,in);
+        int ub=upper_bound(in.begin(),in.end(),key)-in.begin();
+        if(in[ub-1]==key){
+            Node* temp1;
+            Node* temp2;
+            if(ub-2>=0)temp1=new Node(in[ub-2]);
+            else temp1=new Node(-1);
+            if(ub>=in.size())temp2=new Node(-1);
+            else temp2=new Node(in[ub]);
+            pre=temp1,suc=temp2;
+        }
+        else if(ub>=in.size()){
+            Node* temp1=new Node(in[ub-1]);
+            pre=temp1;
+            
+        }
+        else if(ub==0){
+            Node* temp=new Node(in[ub]);
+            suc=temp;
+        }
+        else{
+            Node* temp1=new Node(in[ub-1]);
+            Node* temp2=new Node(in[ub]);
+            pre=temp1,suc=temp2;
+            
+        }
+        
+    }
+};
