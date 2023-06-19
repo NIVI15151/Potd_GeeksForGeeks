@@ -1,0 +1,13 @@
+void arrange(long long a[], int n) {
+       
+       for (int i = 0; i < n; i++)
+       {
+           a[i] = a[i] + ((a[a[i]])%n)*n;
+       }
+       // why we divide this because we have to get actual number so we divide each element with n
+       for (int i = 0; i < n; i++)
+       {
+           a[i] = a[i]/n;
+       }
+       
+   }
