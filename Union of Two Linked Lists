@@ -1,0 +1,22 @@
+struct Node* makeUnion(struct Node* head1, struct Node* head2)
+    {
+        // code here
+        set<int>s;
+        Node* curr=head1;
+        while(curr){
+            s.insert(curr->data);
+            curr=curr->next;
+        }
+        curr=head2;
+        while(curr){
+            s.insert(curr->data);
+            curr=curr->next;
+        }
+        Node* head=new Node(0);
+        curr=head;
+        for(auto it:s){
+            curr->next=new Node(it);
+            curr=curr->next;
+        }
+        return head->next;
+    }
