@@ -1,0 +1,32 @@
+class Solution
+{
+public:
+    // Function to remove duplicates from unsorted linked list.
+    Node* removeDuplicates(Node* head)
+    {
+        if (head == nullptr)
+            return nullptr;
+
+        std::unordered_set<int> uniqueElements;
+        Node* curr = head;
+        Node* prev = nullptr;
+
+        while (curr != nullptr) {
+            if (uniqueElements.count(curr->data) > 0) {
+                // If the current node's data is already in the set, it's a duplicate.
+                // We remove it from the list and continue to the next node.
+                prev->next = curr->next;
+                delete curr;
+                curr = prev->next;
+            } else {
+                // If the current node's data is not in the set, we add it to the set
+                // and move forward in the list.
+                uniqueElements.insert(curr->data);
+                prev = curr;
+                curr = curr->next;
+            }
+        }
+
+        return head;
+    }
+};
